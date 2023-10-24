@@ -63,44 +63,29 @@ func (o *optionsStruct) Unmarshal(options map[string]interface{}) {
 		o.Exists = true
 	}
 
-	regexMatchInterface, ok := options["regex_match"]
+	_, ok = options["regex_match"]
 	if ok {
-		regexMatch, ok := regexMatchInterface.(bool)
-		if ok {
-			o.RegexMatch = regexMatch
-		}
+		o.RegexMatch = true
 	}
 
-	matchInterface, ok := options["match"]
+	_, ok = options["match"]
 	if ok {
-		match, ok := matchInterface.(bool)
-		if ok {
-			o.Match = match
-		}
+		o.Match = true
 	}
 
-	sha256Interface, ok := options["sha256"]
+	_, ok = options["sha256"]
 	if ok {
-		sha256, ok := sha256Interface.(bool)
-		if ok {
-			o.Sha256 = sha256
-		}
+		o.Sha256 = true
 	}
 
-	md5Interface, ok := options["md5"]
+	_, ok = options["md5"]
 	if ok {
-		md5, ok := md5Interface.(bool)
-		if ok {
-			o.Md5 = md5
-		}
+		o.Md5 = true
 	}
 
-	sha1Interface, ok := options["sha1"]
+	_, ok = options["sha1"]
 	if ok {
-		sha1, ok := sha1Interface.(bool)
-		if ok {
-			o.Sha1 = sha1
-		}
+		o.Sha1 = true
 	}
 }
 
