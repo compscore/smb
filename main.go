@@ -155,6 +155,10 @@ func (o *optionsStruct) Check(expectedOutput string, file *smb2.File) error {
 }
 
 func Run(ctx context.Context, target string, command string, expectedOutput string, username string, password string, options map[string]interface{}) (bool, string) {
+	if !strings.Contains(target, ":") {
+		target = fmt.Sprintf("%s:445", target)
+	}
+
 	var o optionsStruct
 	o.Unmarshal(options)
 
