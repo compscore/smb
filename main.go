@@ -58,12 +58,9 @@ func (o *optionsStruct) Unmarshal(options map[string]interface{}) {
 		}
 	}
 
-	existsInterface, ok := options["exists"]
+	_, ok = options["exists"]
 	if ok {
-		exists, ok := existsInterface.(bool)
-		if ok {
-			o.Exists = exists
-		}
+		o.Exists = true
 	}
 
 	regexMatchInterface, ok := options["regex_match"]
