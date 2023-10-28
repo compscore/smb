@@ -1,4 +1,4 @@
-# Check Template
+# SMB
 
 ## Check Format
 
@@ -41,15 +41,10 @@
 |     `command`     |         `.command`         | `string` |   `""`   | `false`  | `file tp check against expectedOutput`                |
 | `expectedOutput`  |     `.expectedOutput`      | `string` |   `""`   | `false`  | `expected output for check to measured against`       |
 |     `weight`      |         `.weight`          |  `int`   |   `0`    |  `true`  | `amount of points a successful check is worth`        |
-|     `domain`      |     `.options.domain`      | `string` |   `""`   |  `true`  | `domain of the targeted smb server `                  |
-|      `share`      |      `.options.share`      | `string` |   `""`   |  `true`  | `targeted smb share`                                  |
-|     `exists`      |     `.options.exists`      |  `bool`  | `false ` | `false`  | `check targeted file exists and can be accessed`      |
+|   `status_code`   |   `.options.status_code`   |  `int`   |   `0`    | `false`  | `check status_code of the response`                   |
 |      `match`      |      `.options.match`      |  `bool`  | `false`  | `false`  | `check contents of targeted file are exact match`     |
 | `substring_match` | `.options.substring_match` |  `bool`  | `false`  | `false`  | `check contents of targeted file are substring match` |
 |   `regex_match`   |   `.options.regex_match`   |  `bool`  | `false`  | `false`  | `check contents of targeted file are regex match`     |
-|     `sha256`      |     `.options.sha256`      |  `bool`  | `false ` | `false`  | `check sha256 hash of targeted file matches hash`     |
-|       `md5`       |       `.options.md5`       |  `bool`  | `false`  | `false`  | `check md5 hash of targeted file matches hash`        |
-|      `sha1`       |      `.options.sha1`       |  `bool`  |  `bool`  | `false`  | `check sha1 hash of targeted file matches hash`       |
 
 ## Examples
 
