@@ -154,6 +154,10 @@ func (o *optionsStruct) Check(expectedOutput string, file *smb2.File) error {
 	return nil
 }
 
+func clean(input string) string {
+	return strings.ReplaceAll(input, "\x00", "")
+}
+
 func Run(ctx context.Context, target string, command string, expectedOutput string, username string, password string, options map[string]interface{}) (bool, string) {
 	if !strings.Contains(target, ":") {
 		target = fmt.Sprintf("%s:445", target)
@@ -164,7 +168,7 @@ func Run(ctx context.Context, target string, command string, expectedOutput stri
 
 	conn, err := net.Dial("tcp", target)
 	if err != nil {
-		return false, err.Error()
+		return false, clean(err.Error())
 	}
 	defer conn.Close()
 
@@ -178,7 +182,7 @@ func Run(ctx context.Context, target string, command string, expectedOutput stri
 
 	s, err := smbConn.DialContext(ctx, conn)
 	if err != nil {
-		return false, err.Error()
+		return false, clean(err.Error())
 	}
 	defer s.Logoff()
 
@@ -190,24 +194,24 @@ func Run(ctx context.Context, target string, command string, expectedOutput stri
 		),
 	)
 	if err != nil {
-		return false, err.Error()
+		return false, clean(err.Error())
 	}
 	defer fs.Umount()
 
 	f, err := fs.Open(command)
 	if err != nil {
-		return false, err.Error()
+		return false, clean(err.Error())
 	}
 	defer f.Close()
 
 	_, err = f.Seek(0, io.SeekStart)
 	if err != nil {
-		return false, err.Error()
+		return false, clean(err.Error())
 	}
 
 	err = o.Check(expectedOutput, f)
 	if err != nil {
-		return false, err.Error()
+		return false, clean(err.Error())
 	}
 
 	return true, ""
